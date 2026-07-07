@@ -172,16 +172,26 @@ export default function App() {
   }, []);
 
   // ---------- file drag over the whole app ----------
+  // Only react to genuine file drags. A place-chip drag carries 'text/plain'
+  // (not 'Files'); reacting to it here would pop the full-screen CSV overlay and
+  // steal the drop from the map, breaking drag-to-pin geocoding.
+  const isFileDrag = (e) =>
+    Array.from(e.dataTransfer?.types || []).includes('Files');
   const onDragOver = useCallback(
     (e) => {
+      if (!isFileDrag(e)) return;
       e.preventDefault();
       if (!dragging) setDragging(true);
     },
     [dragging]
   );
-  const onDragLeave = useCallback(() => setDragging(false), []);
+  const onDragLeave = useCallback((e) => {
+    if (!isFileDrag(e)) return;
+    setDragging(false);
+  }, []);
   const onDrop = useCallback(
     (e) => {
+      if (!isFileDrag(e)) return;
       e.preventDefault();
       setDragging(false);
       const f = e.dataTransfer.files && e.dataTransfer.files[0];
