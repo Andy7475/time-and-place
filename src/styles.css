@@ -324,6 +324,9 @@ body,
   flex: 1;
   position: relative;
   min-width: 0;
+  /* Contain Leaflet's internal z-indexes (its map-pane is z-index:400) so they
+     never paint over app-level overlays like the CSV-mapping modal. */
+  isolation: isolate;
 }
 .map-canvas {
   position: absolute;
@@ -335,7 +338,8 @@ body,
   border: 2px dashed;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.75);
-  z-index: 30;
+  /* Above every Leaflet pane/control inside the isolated map context. */
+  z-index: 1200;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -355,7 +359,7 @@ body,
   font-size: 12px;
   color: var(--sub);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  z-index: 20;
+  z-index: 1200;
 }
 
 /* ---------- overlays ---------- */
@@ -415,7 +419,7 @@ body,
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
+  z-index: 200;
 }
 .modal-card {
   background: #fff;
