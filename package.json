@@ -1,0 +1,37 @@
+{
+  "name": "time-and-place",
+  "version": "1.0.0",
+  "description": "In-browser tool for visualising event records along a real-time timeline and a live map. All data stays in the browser.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://andy7475.github.io/time-and-place/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andy7475/time-and-place.git"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "leaflet": "1.9.4",
+    "papaparse": "5.4.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.17.0",
+    "@vitejs/plugin-react": "4.3.4",
+    "eslint": "9.17.0",
+    "globals": "15.14.0",
+    "eslint-plugin-react": "7.37.3",
+    "eslint-plugin-react-hooks": "5.1.0",
+    "jsdom": "25.0.1",
+    "vite": "6.0.7",
+    "vitest": "2.1.8"
+  }
+}
